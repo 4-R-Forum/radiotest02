@@ -15,3 +15,13 @@ let data_string = ""
 radio.setGroup(1)
 radio.setTransmitPower(7)
 radio.setFrequencyBand(0)
+loops.everyInterval(1000, function () {
+    data_string = "" + convertToText(input.temperature()) + "," + convertToText(input.lightLevel())
+    comma_at = data_string.indexOf(",")
+    temp = parseFloat(data_string.substr(0, comma_at - 0))
+    light2 = parseFloat(data_string.substr(comma_at + 1, data_string.length - (comma_at + 1)))
+    datalogger.log(
+    datalogger.createCV("Temp", temp),
+    datalogger.createCV("Light", light2)
+    )
+})
