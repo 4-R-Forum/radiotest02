@@ -1,7 +1,10 @@
+/**
+ * EveryLoop tests logic
+ */
 radio.onReceivedString(function (receivedString) {
     data_string = receivedString
     comma_at = data_string.indexOf(",")
-    temp = parseFloat(data_string.substr(0, comma_at - 1))
+    temp = parseFloat(data_string.substr(0, comma_at))
     light2 = parseFloat(data_string.substr(comma_at + 1, data_string.length - (comma_at + 1)))
     datalogger.log(
     datalogger.createCV("0", temp),
@@ -18,7 +21,7 @@ radio.setFrequencyBand(0)
 loops.everyInterval(1000, function () {
     data_string = "" + convertToText(input.temperature()) + "," + convertToText(input.lightLevel())
     comma_at = data_string.indexOf(",")
-    temp = parseFloat(data_string.substr(0, comma_at - 0))
+    temp = parseFloat(data_string.substr(0, comma_at))
     light2 = parseFloat(data_string.substr(comma_at + 1, data_string.length - (comma_at + 1)))
     datalogger.log(
     datalogger.createCV("Temp", temp),
